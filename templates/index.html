@@ -1,0 +1,153 @@
+
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Election{% block title %}
+    
+    {% endblock title %}</title>
+  <!-- Bootstrap core CSS -->
+    <!-- <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+
+  </head>
+  <body>
+    
+
+      
+      {% block content %}
+      <div>
+        <h1>Election Result Board for Delta State</h1>
+      </div>
+      <div>
+        <h1>check local govert result here</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+
+            <label for="lga">Local Govt</label>
+
+        <select name="lga" id="lga">
+          {% for l in lga_list %}
+            <option value="{{l}}">{{l}}</option>
+          {% endfor %}
+          
+        </select> 
+        <input  name="type" type="hidden" value="1">
+        <button>Check</button>
+
+        </form>
+        <p>result is </p>
+        
+
+
+
+      </div>
+      <div>
+        <h1>check polling unit result here</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+
+            <label for="pu">Polling Unit</label>
+
+        <select name="pu" id="pu">
+            {% for p in pu_list %}
+            <option value="{{p}}">{{p}}</option>
+          {% endfor %}
+        </select>
+        <input  name="type" type="hidden" value="2">
+        <button>check</button>
+
+        </form>
+        <p>results is </p>
+        
+
+
+      </div>
+      <table>
+        <tr>
+          <th>Local Govt</th>
+          <th>Polling center</th>
+          <th>Party</th>
+          <th>Result</th>
+        </tr>
+        
+        {% for i in results %}
+          
+            <tr>
+                <td>{{i.lga_name}}</td>
+                <td>{{i.pu_name}}</td>
+                <td>{{i.party_abbreviation}}</td>
+                <td>{{i.party_score}}</td>
+            </tr>
+        {%endfor%}
+      </table> 
+
+      state 
+      Party
+      result
+      agent
+      date
+      <div>
+        <h1>Publish Polling Unit</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <p>Delta state</p>
+
+
+            <label for="pa">Party</label>
+
+          <select name="pa" id="pa" required>
+              {% for i in parties %}
+              <option value="{{i.partyname}}">{{i.partyname}}</option>
+            {% endfor %}
+          </select>
+          <label for="re">Result</label>
+          <input name="re" id="re" type="number" required>
+          <select name="ag" id="ag" required>
+            {% for i in agents %}
+            <option value="{{i.firstname}}">{{i.firstname}}</option>
+          {% endfor %}
+        </select>
+        <input  name="date" id="date" type="date" required>
+          <input  name="type" type="hidden" value="3" required>
+          <button>Submit Result</button>
+
+        </form>
+        <p>results is </p>
+        
+
+
+      </div>
+      
+      
+
+
+          
+      {% endblock content %}
+          
+
+      
+    
+
+
+    <!-- <script src="{% static 'js/dashboard.js' %}"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+   
+    
+
+
+
+  </body>
+</html>
+
+
+
+
+
