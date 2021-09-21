@@ -82,10 +82,10 @@ WSGI_APPLICATION = 'election.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'femidavi_bitnob',
-        'USER':'joe',
-        'PASSWORD':'Blasted123',
-        'HOST': 'femidaviesandco.com',
+        'NAME':'bit_db',
+        'USER':'root',
+        'PASSWORD':'blasted12',
+        'HOST': 'localhost',
         'PORT': '3306',
     
     }
